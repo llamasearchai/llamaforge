@@ -1,0 +1,22 @@
+# Core dependencies
+requests>=2.25.0
+tqdm>=4.50.0
+numpy>=1.19.0
+huggingface_hub>=0.10.0
+fastapi>=0.70.0
+uvicorn>=0.15.0
+pydantic>=1.9.0
+rich>=10.0.0
+
+# Optional dependencies for different backends
+# Uncomment as needed
+
+# llama.cpp backend
+# llama-cpp-python>=0.1.0
+
+# MLX backend (Apple Silicon only)
+# mlx>=0.0.3
+
+# Transformers backend
+# transformers>=4.20.0
+# torch>=1.10.0 

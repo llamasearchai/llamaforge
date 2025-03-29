@@ -1,0 +1,82 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "llamaforge"
+version = "0.2.0"
+description = "Ultimate Language Model Command Interface"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+    { name = "LlamaSearch AI", email = "info@llamasearch.ai" }
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "requests>=2.28.0",
+    "tqdm>=4.64.0",
+    "numpy>=1.22.0",
+    "rich>=12.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "isort>=5.10.0",
+    "mypy>=1.0.0",
+    "flake8>=6.0.0",
+]
+llama-cpp = [
+    "llama-cpp-python>=0.1.0",
+]
+huggingface = [
+    "transformers>=4.25.0",
+    "torch>=1.13.0",
+]
+server = [
+    "fastapi>=0.95.0",
+    "uvicorn>=0.20.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/llamasearch/llamaforge"
+"Bug Tracker" = "https://github.com/llamasearch/llamaforge/issues"
+"Documentation" = "https://github.com/llamasearch/llamaforge/docs"
+
+[project.scripts]
+llamaforge = "llamaforge.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["llamaforge"]
+
+[tool.black]
+line-length = 88
+target-version = ["py38", "py39", "py310", "py311"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py" 

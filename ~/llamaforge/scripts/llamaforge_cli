@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+"""
+LlamaForge CLI Launcher
+This script serves as the main entry point for the LlamaForge command-line interface.
+"""
+
+import os
+import sys
+import platform
+from pathlib import Path
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[logging.StreamHandler(sys.stdout)]
+)
+logger = logging.getLogger("llamaforge_cli")
+
+def main():
+    """Main entry point for the CLI launcher."""
+    # Get the installation directory
+    llamaforge_dir = Path.home() / ".llamaforge"
+    
+    # Check if LlamaForge is installed
+    if not llamaforge_dir.exists():
+        logger.error("LlamaForge installation not found at %s", llamaforge_dir)
+        logger.error("Please run the installer script to install LlamaForge")
+        sys.exit(1)
+    
+    # Add LlamaForge to Python path
+    sys.path.insert(0, str(llamaforge_dir))
+    
+    # Import and run the main function
+    try:
+        from llamaforge.main import main as llamaforge_main
+        llamaforge_main()
+    except ImportError as e:
+        logger.error("Failed to import LlamaForge: %s", e)
+        logger.error("Your installation may be corrupted. Please reinstall LlamaForge.")
+        sys.exit(1)
+    except KeyboardInterrupt:
+        print("\nLlamaForge terminated by user.")
+        sys.exit(0)
+    except Exception as e:
+        logger.error("Error running LlamaForge: %s", e)
+        if "--debug" in sys.argv:
+            import traceback
+            traceback.print_exc()
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main() 

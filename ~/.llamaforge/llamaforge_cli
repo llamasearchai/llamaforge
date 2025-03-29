@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+"""
+LlamaForge CLI Launcher
+This script launches the LlamaForge command-line interface.
+"""
+
+import os
+import sys
+from pathlib import Path
+
+# Get the directory where this script is located
+script_dir = Path(__file__).parent
+
+# Add the parent directory to the Python path
+sys.path.insert(0, str(script_dir))
+
+# If ~/.llamaforge is in the Python path, execute main.py
+try:
+    from llamaforge.main import main
+    main()
+except ImportError as e:
+    print(f"Error importing LlamaForge: {e}")
+    print("Please ensure LlamaForge is installed correctly.")
+    sys.exit(1)
+except KeyboardInterrupt:
+    print("\nLlamaForge terminated by user.")
+    sys.exit(0)
+except Exception as e:
+    print(f"\nError in LlamaForge: {e}")
+    import traceback
+    traceback.print_exc()
+    sys.exit(1) 
