@@ -3,14 +3,14 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "llamaforge"
+name = "llamaforge-llamasearch"
 version = "0.2.0"
 description = "Ultimate Language Model Command Interface"
 readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "MIT" }
 authors = [
-    { name = "LlamaSearch AI", email = "info@llamasearch.ai" }
+    { name = "llamaforge-llamasearch", email = "nikjois@llamasearch.ai" }
 ]
 classifiers = [
     "Development Status :: 4 - Beta",

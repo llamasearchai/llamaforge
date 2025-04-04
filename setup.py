@@ -15,14 +15,14 @@ with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name="llamaforge",
+    name="llamaforge-llamasearch",
     version=version,
     description="Ultimate Language Model Command Interface",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="LlamaSearch AI",
-    author_email="info@llamasearch.ai",
-    url="https://github.com/llamasearch/llamaforge",
+    author_email="nikjois@llamasearch.ai",
+    url="https://llamasearch.ai",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -67,4 +67,6 @@ setup(
             "llamaforge=llamaforge.main:main",
         ],
     },
+    package_dir={"": "src"},
+    packages=find_packages(where="src"),
 ) 
